@@ -1,0 +1,57 @@
+
+{% extends "user/u-dash-header.html" %}
+
+{% load static %}
+{% block main %}
+<style>
+    .btn{
+        margin-bottom:5px ;
+    }
+</style>
+<title>All News</title>
+
+<div class="col-sm-9">
+    <h3>All questions</h3>
+    <div class="content">
+        <table border="1" class="table table-bordered table-striped table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>image</th>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for value in report %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img src="{% static value.image %}" style="max-height: 150px; max-width: 175px;"></td>
+                        <td>{{value.Date}}</td>
+                        <td>{{value.Title | truncatewords:3}}</td>
+                        <td>{{value.Description | truncatewords:3}}</td>
+                        <td>
+                            <!-- <a href="{% url 'AprroveNews' value.id %}" class="btn btn-success">Approve</a> -->
+                            <!-- <a href="#" class="btn btn-primary">Show</a> -->
+                            <a href="{%  url 'EditReport' value.id %}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                            <a href="{% url 'delete' value.id %}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                        <td>{{value.approval}}</td>
+                        <td>{{value.Type}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+</div>
+</html>
+
+{% endblock %}

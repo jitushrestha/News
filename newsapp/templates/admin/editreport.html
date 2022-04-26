@@ -1,0 +1,30 @@
+{% extends "user/u-dash-header.html" %}
+<title>Edit Report</title>
+{% block main %}
+<div class="col-sm-9">
+        <div class="content">
+            <h3>Edit Report</h3>
+            <br>
+
+            
+            <form action="{%  url 'update'%}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ edit.id }}">
+                <br>
+                <label for="title">Image:</label>
+                <input class="" type="file" name="image">
+                <br>
+                <label for="title">Title:</label>
+                <input type="text" name="title" class="form-control" value="{{ edit.Title }}">
+                <br>
+                <label for="note_description">Description:</label>
+                <textarea type="text" name="description" class="form-control" style="height: 150px;" value="{{ edit.Description  }}">{{ edit.Description  }}</textarea>
+                <br>
+
+                <input type="submit" value="UPDATE" class="btn btn-primary">
+                <a href="{%  url 'ReporterNews'%}" class="btn btn-danger">Back</a>
+            </form>
+{{msg}}
+        </div>
+    </div> 
+{% endblock %}

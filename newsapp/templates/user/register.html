@@ -1,0 +1,147 @@
+
+
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+  	<title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-5">
+					<div class="login-wrap p-4 p-md-5">
+		      	<div class="icon d-flex align-items-center justify-content-center">
+		      		<span class="fa fa-address-book"></span>
+		      	</div>
+		      	<h3 class="text-center mb-4">Sign up</h3>
+
+
+
+				<form action="{% url 'ReporterRegister' %}" method="POST" enctype="multipart/form-data">
+								{% csrf_token %}
+									{{ form.as_p }}
+                <h4 style="color: #8d448b;" id="errMessages">{{ msg }}</h4>
+
+	            <div class="form-group d-md-flex">
+	            	<div class="w-100">
+	            		<label class="checkbox-wrap checkbox-primary">
+                    <div class="term">
+                    I accept all terms & condtions.
+									  <input type="checkbox" checked>
+									  <span class="checkmark"></span>
+                    <a href="{% url 'reporterLogin' %}" class="" style="padding-left: 64px;">Login?</a>
+                  </div>
+									</label>
+                  
+								</div>
+	            </div>
+	            <div class="form-group">
+	            	<button id="register" type="submit" class="btn btn-primary rounded submit p-3 px-5">Register</button>
+	            </div>
+	          </form>
+
+
+
+	        </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- modal -->
+	<div class="modal" tabindex="-1" role="dialog" id="modal">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title">Email ID Verification</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  <input id="Inputcode" type="text">
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-primary" onclick="VerifyCode()">Verify</button>
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <script>
+	
+	  
+
+
+	
+
+
+
+
+
+
+
+
+
+	// check user exist or not
+	$("#userID").focusout(function () {
+      debugger;
+      userName = $("#userID").val();
+	  checkUsername(userName);
+    });
+
+	function checkUsername(userName)
+        {
+            $.ajax({
+                url: "{% url 'userExist' %}",
+                data: {
+                  'uName': userName,
+                },
+                type: "GET",
+                dataType: 'json',
+                contentType: "application/json",
+                success: function (data) {
+					debugger;
+                    if(data.message == "Errors"){
+						$('#errMessages').text("username already taken");
+						$('#errMessages').css("color", "red");
+						$('#register').prop('disabled', true);
+					}
+					else{
+						$('#errMessages').text("");
+						$('#register').prop('disabled', false);
+					}
+                }
+              });
+        }
+	
+  </script>
+
+	</body>
+</html>
+

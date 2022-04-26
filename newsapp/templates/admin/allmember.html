@@ -1,0 +1,57 @@
+
+{% extends "dashboard-header.html" %}
+
+{% load static %}
+{% block main %}
+<style>
+    .btn{
+        margin-bottom:5px ;
+    }
+</style>
+<title>All News</title>
+
+<div class="col-sm-9">
+    <h3>News List</h3>
+    <div class="content">
+        <table border="1" class="table table-bordered table-striped table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Firstname</th>
+                    <th>Lasttname</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Image</th>
+                    <th>Apv Status</th>
+                    <th>Action</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for new in member %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{new.firstname}}</td>
+                        <td>{{new.lastname}}</td>
+                        <td>{{new.username}}</td>
+                        <td>{{new.email}}</td>
+                        <td>{{new.contact}}</td>
+                        <td><img src="{% static new.image_url %}" style="max-height: 100px; max-width: 100px;"></td>
+                        <td>{{new.id_approve}}</td>
+                        <td>
+                            
+                            <a href="{% url 'sendEmail' new.id %}" class="btn btn-success">Approve</a>
+                            
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+</div>
+</html>
+
+{% endblock %}

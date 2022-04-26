@@ -1,0 +1,85 @@
+
+
+{% extends "dashboard-header.html" %}
+<title>User home</title>
+
+{% block main %}
+
+
+  <!-- Navbar -->
+  
+  <!-- End Navbar -->
+  <div class="col-sm-9">
+    <div class="well">
+      <h4>Welcome to the Dashboard Admin, {{ username }}</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="well">
+          <h4>Dashboard</h4>
+         
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="well">
+          <h4>Reporter News</h4>
+           
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="well">
+          <h4>All News</h4>
+          
+        </div>
+      </div>
+      
+    </div>
+   <!--  <div class="row">
+      <div class="col-sm-4">
+        <div class="well">
+          <p>Text</p> 
+          <p>Text</p> 
+          <p>Text</p> 
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="well">
+          <p>Text</p> 
+          <p>Text</p> 
+          <p>Text</p> 
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="well">
+          <p>Text</p> 
+          <p>Text</p> 
+          <p>Text</p> 
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="well">
+          <p>Text</p> 
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="well">
+          <p>Text</p> 
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+
+
+
+
+{% endblock %}
+
+<h1>this is index page</h1>
+<a href="{%  url 'AddNews'%}" class="btn btn-primary">Add report</a><br>
+<a href="{%  url 'ShowAllNews'%}" class="btn btn-primary">Reporter News</a><br>
+<a href="{%  url 'userNews'%}" class="btn btn-primary">Today News</a><br>
+<a href="{%  url 'adminLogin'%}" class="btn btn-primary">admin login</a><br>
+<a href="{%  url 'reporterLogin'%}" class="btn btn-primary">reporter login</a><br>

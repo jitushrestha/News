@@ -1,0 +1,38 @@
+{% extends "user/u-dash-header.html" %}
+
+
+{% block main %}
+<title>Add Report</title>
+  <body>
+    <div class="" style="padding-left: 35px;">
+    <h3>Add Report</h3>
+      <div class="content">
+        <input hidden type="text" id="verified" value="{{ reporterverify }}">
+        
+            <form action="{% url 'SaveNews' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- {{ form.as_p }} -->
+                  <label for="img">Select image:</label>
+                  <input type="file" name="image" accept="image/*"><br>
+                  <label for="Title">Title:</label><br>
+                  <input type="text" name="Title" placeholder="Report title.."><br><br>
+                  <label for="Description">Description:</label><br>
+                  <textarea type="text" name="Description" placeholder="Report description.."></textarea><br> <br> 
+                  <label for="type">Report type:</label>
+                    <select name="Type">
+                      <option value="main">Main</option>
+                      <option value="sub">Sub</option>
+                    </select>
+                  
+                  <p>{{ msg }}</p>
+
+                <input type="submit" id="save" value="SAVE" class="btn btn-primary">
+                <a href="{%  url 'rIndex'%}" class="btn btn-primary">Back</a>
+                <p id="erroMessages"></p> 
+            </form>
+            
+       </div>
+      </div>
+    </body>
+</html>
+{% endblock %}
